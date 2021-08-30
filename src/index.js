@@ -98,7 +98,7 @@ function createLightHelper(light) {
 let renderer = createRerender();
 let scene = createScene();
 let camera = createCamera();
-let axesHelper = createAxesHelper();
+// let axesHelper = createAxesHelper();
 let cube = createCube();
 let sphere = createSphere();
 let light = createLight();
@@ -110,7 +110,8 @@ light.position.x = 10;
 light.position.y = 10;
 light.position.z = 10;
 
-sphere.position.x = 15;
+let spheres = [];
+let sphereCount = 300;
 
 let cubes = [];
 let cubeCount = 500;
@@ -125,8 +126,18 @@ for (let i = 1; i <= cubeCount; i += 1) {
 
 console.log(cubes.length);
 
-scene.add(axesHelper);
-scene.add(cube, sphere, light, lightHelper, ...cubes);
+for (let m = 1; m <= sphereCount; m += 1) {
+  let d = createSphere();
+  d.position.x = Math.random() * 400 - 200; // -200 to 200, random 3D position
+  d.position.y = Math.random() * 400 - 200;
+  d.position.z = Math.random() * 400 - 200;
+  spheres.push(d);
+}
+
+console.log(spheres.length);
+
+// scene.add(axesHelper);
+scene.add(cube, sphere, light, lightHelper, ...cubes, ...spheres);
 // ... = separate operator, (run the fx multiple time)
 
 // anytime camera n scene chnage or run, we need to rerender(renderer fx used)
@@ -143,12 +154,20 @@ function animate() {
     c.rotation.z += -0.03;
   });
 
+  sphere.rotation.x += 0.03;
+
+  spheres.forEach(function (d) {
+    d.position.x += 0.2;
+    d.position.y += 0.2;
+    d.position.z += 0.2;
+  });
+
   //  Inrement and decrement
   // cube.position.x += 0.1;
   // cube.position.y -= 0.1;
   // cube.position.z -= 0.1;
   // cube.rotation.x += 0.1;
-  // sphere.position.y += 0.1;
+
   renderer.render(scene, camera);
   requestAnimationFrame(animate); // Can you call animate as soon as you can
 }
