@@ -41,12 +41,27 @@ function createAxesHelper() {
   return axesHelper;
 }
 
+function getRandomColor() {
+  let colors = [
+    "dodgerblue",
+    "tomato",
+    "limegreen",
+    "rebeccapurple",
+    "gold",
+    "lavender",
+    "lightcoral",
+    "papayawhip",
+  ];
+  let randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
+
 function createCube() {
   // Geometry - The actual shape/ skeleton of the object
   let geometry = new THREE.BoxGeometry(4, 4, 4);
   // Material - The colour / how it interacts with ligth
   let material = new THREE.MeshLambertMaterial({
-    color: "tomato",
+    color: getRandomColor(),
   });
   // Create a mesh by combining the geometry and the material
   let mesh = new THREE.Mesh(geometry, material);
@@ -59,7 +74,7 @@ function createSphere() {
   let geo = new THREE.SphereGeometry(4, 30, 30);
   // Material
   let mat = new THREE.MeshLambertMaterial({
-    color: "dodgerblue",
+    color: getRandomColor(),
   });
   // Mesh
   let mesh = new THREE.Mesh(geo, mat);
@@ -68,7 +83,7 @@ function createSphere() {
 }
 
 function createLight() {
-  let ligth = new THREE.PointLight("white", 1);
+  let ligth = new THREE.PointLight("white", 1.5);
   return ligth;
 }
 
@@ -90,7 +105,7 @@ light.position.x = 10;
 light.position.y = 10;
 light.position.z = 10;
 
-sphere.position.x = 20;
+sphere.position.x = 15;
 
 scene.add(axesHelper);
 scene.add(cube, sphere, light, lightHelper);
@@ -104,7 +119,7 @@ function animate() {
   // cube.position.y -= 0.1;
   // cube.position.z -= 0.1;
   // cube.rotation.x += 0.1;
-  // sphere.position.x += 0.2;
+  // sphere.position.y += 0.1;
   renderer.render(scene, camera);
   requestAnimationFrame(animate); // Can you call animate as soon as you can
 }
