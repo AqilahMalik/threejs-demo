@@ -9,6 +9,7 @@ console.log(process.env.API_KEY);
 
 const { BoxHelper } = require("three");
 const THREE = require("three");
+const orbit = require("three-orbitcontrols");
 
 function createRerender() {
   let renderer = new THREE.WebGLRenderer({
@@ -103,6 +104,8 @@ let sphere = createSphere();
 let light = createLight();
 let lightHelper = createLightHelper(light);
 
+let controls = new orbit(camera, renderer.domElement);
+
 light.position.x = 10;
 light.position.y = 10;
 light.position.z = 10;
@@ -130,9 +133,9 @@ scene.add(cube, sphere, light, lightHelper, ...cubes);
 renderer.render(scene, camera);
 
 function animate() {
-  cube.rotation.x += 0.05;
-  cube.rotation.y += 0.05;
-  cube.rotation.z += 0.05;
+  cube.rotation.x += 0.03;
+  cube.rotation.y += 0.03;
+  cube.rotation.z += 0.03;
 
   cubes.forEach(function (c) {
     c.rotation.x += -0.03;
