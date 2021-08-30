@@ -5,6 +5,8 @@
 //  - Meshes (objects in the 3D world)
 //  - Lights
 
+console.log(process.env.API_KEY);
+
 const { BoxHelper } = require("three");
 const THREE = require("three");
 
