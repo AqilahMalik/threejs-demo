@@ -10,6 +10,9 @@ console.log(process.env.API_KEY);
 const { BoxHelper } = require("three");
 const THREE = require("three");
 const orbit = require("three-orbitcontrols");
+const orbit = require("three-orbit-controls");
+
+const OrbitControls = orbit(THREE);
 
 function createRerender() {
   let renderer = new THREE.WebGLRenderer({
@@ -105,6 +108,7 @@ let light = createLight();
 let lightHelper = createLightHelper(light);
 
 let controls = new orbit(camera, renderer.domElement);
+new OrbitControls(camera);
 
 light.position.x = 10;
 light.position.y = 10;
