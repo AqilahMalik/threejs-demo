@@ -6,6 +6,8 @@
 //  - Lights
 
 console.log(process.env.API_KEY);
+
+const { BoxHelper } = require("three");
 const THREE = require("three");
 const orbit = require("three-orbitcontrols");
 const orbit = require("three-orbit-controls");
@@ -99,7 +101,7 @@ function createLightHelper(light) {
 let renderer = createRerender();
 let scene = createScene();
 let camera = createCamera();
-let axesHelper = createAxesHelper();
+// let axesHelper = createAxesHelper();
 let cube = createCube();
 let sphere = createSphere();
 let light = createLight();
@@ -138,7 +140,7 @@ for (let m = 1; m <= sphereCount; m += 1) {
 
 console.log(spheres.length);
 
-scene.add(axesHelper);
+// scene.add(axesHelper);
 scene.add(cube, sphere, light, lightHelper, ...cubes, ...spheres);
 // ... = separate operator, (run the fx multiple time)
 
